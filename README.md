@@ -43,8 +43,7 @@ multi-ai/
 ├── pages/                 # 主页面（app.html/css/js）与弹窗（popup）
 ├── icons/                 # 扩展图标 16/32/48/128
 ├── docs/                  # 站点验收登记表
-├── tools/                 # 打包脚本 pack_zip.py、图标生成脚本 gen_icons.py
-└── store-assets/          # Chrome 应用商店上架素材（文案 + 截图目录）
+└── tools/                 # 打包脚本 pack_zip.py、图标生成脚本 gen_icons.py
 ```
 
 ## 打包（Chrome Web Store 上架用）

@@ -13,8 +13,8 @@ VERSION = json.load(open(MANIFEST, encoding="utf-8"))["version"]
 if len(sys.argv) > 1:
     VERSION = sys.argv[1]
 
-EXCLUDE_DIRS = {"__pycache__", ".preview"}
-EXCLUDE_FILES = {".DS_Store", "Thumbs.db"}
+EXCLUDE_DIRS = {"__pycache__", ".preview", ".git", "store-assets"}
+EXCLUDE_FILES = {".DS_Store", "Thumbs.db", ".gitignore"}
 
 def main():
     out = os.path.join(os.path.dirname(ROOT), f"multi-ai-{VERSION}.zip")
