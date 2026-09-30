@@ -341,9 +341,18 @@
     return !el.textContent || el.textContent.trim() === "";
   }
 
-  /* 粗略判断当前页面是否处于登录页/未登录态 */
+  /* ---------- 国际化 ---------- */
+  function t(key, args) {
+    try { return MAI18N ? MAI18N.t(key, args) : key; } catch (e) { return key; }
+  }
+
+  /* 粗略判断当前页面是否处于登录页/未登录态（多语言登录词库） */
   function looksLoggedOut() {
-    var hints = ["登录", "登入", "Log in", "Sign in", "Login", "Sign up", "注册"];
+    var hints = [
+      "登录", "登入", "注册", "Log in", "Sign in", "Login", "Sign up",
+      "ログイン", "로그인", "Se connecter", "Connexion", "Anmelden", "Einloggen",
+      "Iniciar sesión", "Acceder", "Entrar", "Fazer login", "Войти", "Вход", "تسجيل الدخول"
+    ];
     var els = document.querySelectorAll("button, a, [role='button']");
     var n = Math.min(els.length, 120);
     for (var i = 0; i < n; i++) {
@@ -359,14 +368,15 @@
 
   async function perform(siteName, value, requestId) {
     var adapter = ADAPTERS[siteName];
-    if (!adapter) return { requestId: requestId, status: "not_found", detail: "无适配器" };
+    if (!adapter) return { requestId: requestId, status: "not_found", detail: t("ad.noAdapter") };
 
     var input = await findInput(adapter);
     if (!input) {
+      var loggedOut = looksLoggedOut();
       return {
         requestId: requestId,
-        status: looksLoggedOut() ? "logged_out" : "not_found",
-        detail: looksLoggedOut() ? "疑似未登录或处于登录页" : "未找到输入框（站点结构可能已变化）"
+        status: loggedOut ? "logged_out" : "not_found",
+        detail: loggedOut ? t("ad.looksLoggedOut") : t("ad.inputNotFound")
       };
     }
 
@@ -396,8 +406,7 @@
       cleared = inputEmpty(input);
       method = cleared ? "click+enter" : method;
     }
-    var detail = "已发送（" + method + (cleared ? "，输入框已清空" : "，文字已填入但未确认发出）");
-    if (!cleared) detail = "文字已填入，但发送未确认（按钮可能未点亮或站点改版）";
+    var detail = cleared ? t("ad.sentCleared", [method]) : t("ad.notConfirmed");
     return {
       requestId: requestId,
       status: "ok",

@@ -96,6 +96,14 @@ async function installDnrRules() {
 
 /* ---------- 右键菜单 ---------- */
 
+/* 默认工作区按当前语言显示；用户自定义工作区显示原名称 */
+function wsName(w) {
+  if (w.id === "ws-ai") return chrome.i18n.getMessage("ws.aiFamily");
+  if (w.id === "ws-global") return chrome.i18n.getMessage("ws.globalSearch");
+  if (w.id === "ws-cn") return chrome.i18n.getMessage("ws.chineseSearch");
+  return w.name;
+}
+
 async function rebuildMenus() {
   try {
     await new Promise((resolve) => {
@@ -106,13 +114,13 @@ async function rebuildMenus() {
     });
     chrome.contextMenus.create({
       id: "msa-root",
-      title: "Multi AI 搜索",
+      title: chrome.i18n.getMessage("ctx.main"),
       contexts: ["selection"]
     });
     chrome.contextMenus.create({
       id: "msa-current",
       parentId: "msa-root",
-      title: "用当前工作区搜索“%s”",
+      title: chrome.i18n.getMessage("ctx.current"),
       contexts: ["selection"]
     });
     const s = await getSettings();
@@ -127,7 +135,7 @@ async function rebuildMenus() {
         chrome.contextMenus.create({
           id: "msa-ws-" + w.id,
           parentId: "msa-root",
-          title: w.name + "：“%s”",
+          title: chrome.i18n.getMessage("ctx.wsItem", [wsName(w)]),
           contexts: ["selection"]
         });
       });

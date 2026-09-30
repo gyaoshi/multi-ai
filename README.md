@@ -12,6 +12,7 @@
 - **工作区预设**：AI 全家桶 / 全球搜索 / 中文搜索，一键切换面板组合；也可把当前面板组合存为自定义工作区。
 - **不重载体验**：增删/移动面板采用增量渲染，已有面板的页面不会重新加载；移除的面板会被缓存复用。
 - **深色 / 浅色主题**。
+- **多语言界面**：跟随浏览器语言自动切换，支持简体中文、繁体中文、英语、日语、韩语、法语、德语、西班牙语、葡萄牙语、俄语 10 种语言。
 - **站点内嵌与 UA 处理**：通过 `declarativeNetRequest` 移除目标站点拒绝内嵌的响应头（X-Frame-Options / CSP），并对主流搜索引擎改写移动端 UA，以获得更好的内嵌效果。
 
 ## 安装（开发者模式加载）
@@ -36,12 +37,14 @@
 
 ```
 multi-ai/
-├── manifest.json          # MV3 清单：权限、host 白名单、内容脚本
+├── manifest.json          # MV3 清单：权限、host 白名单、内容脚本、default_locale
 ├── background.js          # 后台：DNR 规则、右键菜单
 ├── common/sites.js        # 站点清单（AI 助手 + 搜索引擎）与默认面板
+├── common/i18n.js         # 国际化辅助（chrome.i18n + 内置中文降级字典）
 ├── content/adapter.js     # 16 个 AI 站点适配器（填框 + 触发发送 + 回执）
 ├── pages/                 # 主页面（app.html/css/js）与弹窗（popup）
 ├── icons/                 # 扩展图标 16/32/48/128
+├── _locales/              # 10 种语言文案（zh_CN / zh_TW / en / ja / ko / fr / de / es / pt_BR / ru）
 ├── docs/                  # 站点验收登记表
 └── tools/                 # 打包脚本 pack_zip.py、图标生成脚本 gen_icons.py
 ```

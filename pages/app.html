@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi AI 多引擎搜索</title>
+  <title>Multi AI</title>
   <link rel="stylesheet" href="app.css" />
 </head>
 <body>
@@ -12,19 +12,19 @@
     <div class="brand">
       <img class="logo" src="../icons/icon16.png" alt="" width="20" height="20" />
       <span class="title">Multi AI</span>
-      <span class="subtitle">多引擎同搜 · 多 AI 同问</span>
+      <span class="subtitle" data-i18n="app.subtitle">多引擎同搜 · 多 AI 同问</span>
     </div>
     <nav id="workspaceChips"></nav>
     <div class="actions">
-      <button id="btnAddPanel" class="btn ghost" title="添加面板">＋ 面板</button>
-      <button id="btnSettings" class="btn ghost" title="设置">⚙ 设置</button>
+      <button id="btnAddPanel" class="btn ghost" data-i18n="app.addPanel" data-i18n-title="app.addPanelTitle">＋ 面板</button>
+      <button id="btnSettings" class="btn ghost" data-i18n="app.settings" data-i18n-title="app.settingsTitle">⚙ 设置</button>
     </div>
   </header>
 
   <!-- 预览模式提示（未加载扩展时显示） -->
   <div id="previewBanner" class="banner hidden">
-    <span>预览模式（未加载扩展）：AI 面板对话不会真正发生。完整功能请在 <b>chrome://extensions</b> 开启「开发者模式」→「加载已解压的扩展程序」，选择 <b>multi-ai</b> 目录。</span>
-    <button id="btnCloseBanner" class="btn small">知道了</button>
+    <span data-i18n-html="app.previewBanner">预览模式（未加载扩展）：AI 面板对话不会真正发生。完整功能请在 <b>chrome://extensions</b> 开启「开发者模式」→「加载已解压的扩展程序」，选择 <b>multi-ai</b> 目录。</span>
+    <button id="btnCloseBanner" class="btn small" data-i18n="app.previewOk">知道了</button>
   </div>
 
   <!-- 面板网格 -->
@@ -33,8 +33,8 @@
   <!-- 底部统一输入栏 -->
   <footer id="searchbar">
     <div class="bar">
-      <input id="query" type="text" placeholder="输入内容，回车或点发送 —— 所有面板同时搜索 / 同时开始对话" autocomplete="off" spellcheck="false" />
-      <button id="btnSend" class="btn primary">发送</button>
+      <input id="query" type="text" data-i18n-placeholder="app.queryPlaceholder" placeholder="输入内容，回车或点发送 —— 所有面板同时搜索 / 同时开始对话" autocomplete="off" spellcheck="false" />
+      <button id="btnSend" class="btn primary" data-i18n="app.send">发送</button>
     </div>
   </footer>
 
@@ -42,36 +42,36 @@
   <div id="modal" class="modal hidden">
     <div class="modal-card">
       <div class="modal-head">
-        <h3>设置</h3>
-        <button id="btnCloseModal" class="btn ghost" title="关闭">✕</button>
+        <h3 data-i18n="app.settingsTitle">设置</h3>
+        <button id="btnCloseModal" class="btn ghost" title="关闭" data-i18n-title="app.closeTitle">✕</button>
       </div>
       <div class="modal-body">
         <section>
-          <h4>主题</h4>
+          <h4 data-i18n="app.themeSection">主题</h4>
           <div class="row">
-            <label><input type="radio" name="theme" value="dark" /> 深色</label>
-            <label><input type="radio" name="theme" value="light" /> 浅色</label>
+            <label><input type="radio" name="theme" value="dark" /> <span data-i18n="app.themeDark">深色</span></label>
+            <label><input type="radio" name="theme" value="light" /> <span data-i18n="app.themeLight">浅色</span></label>
           </div>
         </section>
         <section>
-          <h4>面板（数量可自定义，自动平分整行宽度）</h4>
+          <h4 data-i18n="app.panelsSection">面板（数量可自定义，自动平分整行宽度）</h4>
           <ul id="panelList" class="list"></ul>
-          <button id="btnAddPanel2" class="btn ghost">＋ 添加面板</button>
+          <button id="btnAddPanel2" class="btn ghost" data-i18n="app.addPanel2">＋ 添加面板</button>
         </section>
         <section>
-          <h4>工作区</h4>
+          <h4 data-i18n="app.wsSection">工作区</h4>
           <ul id="wsList" class="list"></ul>
           <div class="row">
-            <button id="btnSaveWs" class="btn ghost">把当前面板存为工作区</button>
+            <button id="btnSaveWs" class="btn ghost" data-i18n="app.saveWs">把当前面板存为工作区</button>
           </div>
         </section>
         <section>
-          <h4>自定义搜索引擎</h4>
+          <h4 data-i18n="app.ceSection">自定义搜索引擎</h4>
           <ul id="customList" class="list"></ul>
           <div class="row ce-form">
-            <input id="ceName" type="text" placeholder="名称（如：我的引擎）" />
-            <input id="ceUrl" type="text" placeholder="URL 模板，含 %s（如 https://x.com/search?q=%s）" />
-            <button id="btnAddCe" class="btn ghost">添加</button>
+            <input id="ceName" type="text" data-i18n-placeholder="app.ceNamePlaceholder" placeholder="名称（如：我的引擎）" />
+            <input id="ceUrl" type="text" data-i18n-placeholder="app.ceUrlPlaceholder" placeholder="URL 模板，含 %s（如 https://x.com/search?q=%s）" />
+            <button id="btnAddCe" class="btn ghost" data-i18n="app.addBtn">添加</button>
           </div>
         </section>
       </div>
@@ -82,11 +82,11 @@
   <div id="picker" class="modal hidden">
     <div class="modal-card picker-card">
       <div class="modal-head">
-        <h3 id="pickerTitle">选择站点</h3>
-        <button id="btnClosePicker" class="btn ghost" title="关闭">✕</button>
+        <h3 id="pickerTitle" data-i18n="app.pickerTitle">选择站点</h3>
+        <button id="btnClosePicker" class="btn ghost" title="关闭" data-i18n-title="app.closeTitle">✕</button>
       </div>
       <div class="picker-body">
-        <input id="pickerSearch" type="text" placeholder="搜索站点…" />
+        <input id="pickerSearch" type="text" data-i18n-placeholder="app.pickerSearchPlaceholder" placeholder="搜索站点…" />
         <div id="pickerTabs" class="tabs"></div>
         <ul id="pickerList" class="list picker-list"></ul>
       </div>
@@ -94,6 +94,7 @@
   </div>
 
   <script src="../common/sites.js"></script>
+  <script src="../common/i18n.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

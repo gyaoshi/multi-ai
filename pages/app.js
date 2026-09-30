@@ -29,6 +29,35 @@
 
   var $ = function (id) { return document.getElementById(id); };
 
+  /* ---------- 国际化 ---------- */
+
+  function t(key, args) {
+    return MAI18N ? MAI18N.t(key, args) : key;
+  }
+  function catName(cat) {
+    return MAI18N ? MAI18N.catName(cat) : cat;
+  }
+  /* 默认工作区按当前语言显示；用户自定义工作区显示原名称 */
+  function wsDisplayName(w) {
+    if (w.id === "ws-ai") return t("ws.aiFamily");
+    if (w.id === "ws-global") return t("ws.globalSearch");
+    if (w.id === "ws-cn") return t("ws.chineseSearch");
+    return w.name;
+  }
+  /* 静态 HTML 文案本地化（data-i18n / placeholder / title / html） */
+  function applyStaticI18n() {
+    try { document.documentElement.lang = (navigator.language || "zh-CN"); } catch (e) { /* 忽略 */ }
+    var i, els;
+    els = document.querySelectorAll("[data-i18n]");
+    for (i = 0; i < els.length; i++) els[i].textContent = t(els[i].getAttribute("data-i18n"));
+    els = document.querySelectorAll("[data-i18n-placeholder]");
+    for (i = 0; i < els.length; i++) els[i].setAttribute("placeholder", t(els[i].getAttribute("data-i18n-placeholder")));
+    els = document.querySelectorAll("[data-i18n-title]");
+    for (i = 0; i < els.length; i++) els[i].setAttribute("title", t(els[i].getAttribute("data-i18n-title")));
+    els = document.querySelectorAll("[data-i18n-html]");
+    for (i = 0; i < els.length; i++) els[i].innerHTML = t(els[i].getAttribute("data-i18n-html"));
+  }
+
   /* ---------- 存储 ---------- */
 
   function loadSettings() {
@@ -108,13 +137,13 @@
   function renderWorkspaces() {
     var wrap = $("workspaceChips");
     wrap.innerHTML = "";
-    var chips = [{ id: "", name: "自定义" }];
+    var chips = [{ id: "", name: t("app.customChip") }];
     state.workspaces.forEach(function (w) { chips.push(w); });
     chips.forEach(function (c) {
       var el = document.createElement("span");
       el.className = "chip" + (state.activeWorkspace === c.id ? " active" : "");
-      el.textContent = c.name;
-      el.title = "应用工作区：" + c.name;
+      el.textContent = wsDisplayName(c);
+      el.title = t("app.applyWsTitle", [wsDisplayName(c)]);
       el.addEventListener("click", function () {
         if (c.id) {
           state.panels = c.engines.slice();
@@ -153,34 +182,34 @@
     var nameEl = document.createElement("span");
     nameEl.className = "panel-name";
     nameEl.textContent = name;
-    nameEl.title = "点击更换站点";
+    nameEl.title = t("app.panelNameTitle");
     nameEl.addEventListener("click", function () {
       var idx = parseInt(card.dataset.index, 10);
-      openPicker("替换 “" + name + "” 为…", idx);
+      openPicker(t("app.pickerReplaceTitle", [name]), idx);
     });
 
     var typeEl = document.createElement("span");
     typeEl.className = "panel-type";
-    typeEl.textContent = def && def.type === "ai" ? "AI 对话" : "搜索引擎";
+    typeEl.textContent = def && def.type === "ai" ? t("app.aiPanelType") : t("app.searchPanelType");
 
     var statusEl = document.createElement("span");
     statusEl.className = "panel-status";
-    statusEl.innerHTML = '<span class="dot"></span><span class="st-text">就绪</span>';
+    statusEl.innerHTML = '<span class="dot"></span><span class="st-text">' + t("app.statusReady") + '</span>';
 
     var ops = document.createElement("span");
     ops.className = "panel-ops";
-    ops.appendChild(iconBtn("↻", "刷新面板", function () {
+    ops.appendChild(iconBtn("↻", t("app.refreshTitle"), function () {
       var idx = parseInt(card.dataset.index, 10);
       var frame = card.querySelector("iframe");
       if (frame) frame.src = frame.src;
-      setPanelStatus(idx, "", "刷新中…");
-      setTimeout(function () { setPanelStatus(idx, "", "就绪"); }, 400);
+      setPanelStatus(idx, "", t("app.refreshStatus"));
+      setTimeout(function () { setPanelStatus(idx, "", t("app.statusReady")); }, 400);
     }));
-    ops.appendChild(iconBtn("↗", "在新标签页打开", function () {
+    ops.appendChild(iconBtn("↗", t("app.openNewTabTitle"), function () {
       var frame = card.querySelector("iframe");
       if (frame && frame.src) window.open(frame.src, "_blank");
     }));
-    ops.appendChild(iconBtn("✕", "移除面板", function () {
+    ops.appendChild(iconBtn("✕", t("app.removeTitle"), function () {
       var idx = parseInt(card.dataset.index, 10);
       state.panels.splice(idx, 1);
       state.activeWorkspace = "";
@@ -202,12 +231,12 @@
       var idx = parseInt(card.dataset.index, 10);
       var st = panelStates[idx] && panelStates[idx].status;
       if (st === "sending" || st === "ok") return;
-      setPanelStatus(idx, "", "就绪");
+      setPanelStatus(idx, "", t("app.statusReady"));
     });
 
     card.appendChild(head);
     card.appendChild(frame);
-    panelStates[index] = { status: "", text: "就绪" };
+    panelStates[index] = { status: "", text: t("app.statusReady") };
     return card;
   }
 
@@ -230,7 +259,7 @@
       if (!grid.querySelector(".empty-hint")) {
         var empty = document.createElement("div");
         empty.className = "empty-hint";
-        empty.textContent = "暂无面板 —— 点右上角「＋ 面板」添加，或在顶栏选择一个工作区";
+        empty.textContent = t("app.emptyPanels");
         grid.appendChild(empty);
       }
     } else {
@@ -279,7 +308,7 @@
       if (ty) ty.id = "panel-type-" + i;
       var st = el.querySelector(".panel-status");
       if (st) st.id = "panel-status-" + i;
-      if (!panelStates[i]) panelStates[i] = { status: "", text: "就绪" };
+      if (!panelStates[i]) panelStates[i] = { status: "", text: t("app.statusReady") };
       if (grid.children[i] !== el) grid.appendChild(el);   /* appendChild 移动不重载 iframe */
     });
   }
@@ -302,22 +331,22 @@
   function sendToAiPanel(index, name, q) {
     if (!hasExt) {
       /* 预览模式：没有内容脚本，AI 对话不会发生，给出明确提示 */
-      setPanelStatus(index, "err", "预览模式：需加载扩展后才能真正对话");
+      setPanelStatus(index, "err", t("app.statusPreview"));
       return;
     }
     var frame = $("iframe-" + index);
     if (!frame || !frame.contentWindow) {
-      setPanelStatus(index, "err", "面板未就绪，请刷新后重试");
+      setPanelStatus(index, "err", t("app.statusNotReady"));
       return;
     }
     var requestId = name + "-" + Date.now() + "-" + index;
-    setPanelStatus(index, "sending", "发送中…");
+    setPanelStatus(index, "sending", t("app.statusSending"));
     pending[requestId] = {
       index: index,
       timer: setTimeout(function () {
         if (pending[requestId]) {
           delete pending[requestId];
-          setPanelStatus(index, "err", "超时未确认");
+          setPanelStatus(index, "err", t("app.statusTimeout"));
         }
       }, 15000)
     };
@@ -327,7 +356,7 @@
     } catch (e) {
       clearTimeout(pending[requestId] && pending[requestId].timer);
       delete pending[requestId];
-      setPanelStatus(index, "err", "发送失败");
+      setPanelStatus(index, "err", t("app.statusSendFailed"));
     }
   }
 
@@ -342,7 +371,7 @@
         if (!url) return;
         var frame = $("iframe-" + i);
         if (frame) {
-          setPanelStatus(i, "search", "搜索中…");
+          setPanelStatus(i, "search", t("app.statusSearching"));
           frame.src = url;
         }
       } else if (def.type === "ai") {
@@ -378,20 +407,20 @@
       var def = engineOf(name);
       var tag = document.createElement("span");
       tag.className = "tag";
-      tag.textContent = def && def.type === "ai" ? "AI" : "搜索";
+      tag.textContent = def && def.type === "ai" ? t("app.pickerTabAi") : t("app.pickerTabSearch");
       var ops = document.createElement("span");
       ops.className = "row";
-      ops.appendChild(iconBtn("↑", "上移", function () {
+      ops.appendChild(iconBtn("↑", t("app.moveUp"), function () {
         if (i === 0) return;
         var t = state.panels[i]; state.panels[i] = state.panels[i - 1]; state.panels[i - 1] = t;
         saveSettings(); render();
       }));
-      ops.appendChild(iconBtn("↓", "下移", function () {
+      ops.appendChild(iconBtn("↓", t("app.moveDown"), function () {
         if (i >= state.panels.length - 1) return;
         var t = state.panels[i]; state.panels[i] = state.panels[i + 1]; state.panels[i + 1] = t;
         saveSettings(); render();
       }));
-      ops.appendChild(iconBtn("✕", "移除", function () {
+      ops.appendChild(iconBtn("✕", t("app.removeShort"), function () {
         state.panels.splice(i, 1);
         saveSettings(); render();
       }));
@@ -409,16 +438,16 @@
       var li = document.createElement("li");
       var nm = document.createElement("span");
       nm.className = "name";
-      nm.textContent = w.name + "（" + w.engines.join(" · ") + "）";
+      nm.textContent = wsDisplayName(w) + "（" + w.engines.join(" · ") + "）";
       nm.title = w.engines.join("、");
       var ops = document.createElement("span");
       ops.className = "row";
-      ops.appendChild(iconBtn("应用", "应用此工作区", function () {
+      ops.appendChild(iconBtn(t("app.applyWs"), t("app.applyWsTitle2"), function () {
         state.panels = w.engines.slice();
         state.activeWorkspace = w.id;
         saveSettings(); render(); closeModal();
       }));
-      ops.appendChild(iconBtn("✕", "删除", function () {
+      ops.appendChild(iconBtn("✕", t("app.deleteTitle"), function () {
         state.workspaces = state.workspaces.filter(function (x) { return x.id !== w.id; });
         if (state.activeWorkspace === w.id) state.activeWorkspace = "";
         saveSettings(); render();
@@ -440,10 +469,10 @@
       nm.title = c.url;
       var tag = document.createElement("span");
       tag.className = "tag";
-      tag.textContent = "自定义";
+      tag.textContent = t("app.customTag");
       var ops = document.createElement("span");
       ops.className = "row";
-      ops.appendChild(iconBtn("✕", "删除", function () {
+      ops.appendChild(iconBtn("✕", t("app.deleteTitle"), function () {
         state.customEngines = state.customEngines.filter(function (x) { return x.name !== c.name; });
         state.panels = state.panels.filter(function (p) { return p !== c.name; });
         saveSettings(); render();
@@ -465,7 +494,7 @@
     $("pickerTitle").textContent = title;
     $("pickerSearch").value = "";
     $("picker").classList.remove("hidden");
-    renderPicker("全部");
+    renderPicker("all");
   }
 
   function renderPicker(tab) {
@@ -473,21 +502,21 @@
     var filter = ($("pickerSearch").value || "").trim().toLowerCase();
 
     function push(name, tag, cat) {
-      if (tab !== "全部" && cat !== tab) return;
+      if (tab !== "all" && cat !== tab) return;
       if (filter && name.toLowerCase().indexOf(filter) < 0) return;
       list.push({ name: name, tag: tag });
     }
 
-    SITES_AI.forEach(function (s) { push(s.name, "AI", "AI"); });
-    SITES_SEARCH.forEach(function (s) { push(s.name, "搜索 · " + s.cat, "搜索"); });
-    state.customEngines.forEach(function (c) { push(c.name, "自定义", "自定义"); });
+    SITES_AI.forEach(function (s) { push(s.name, t("app.pickerTabAi"), "ai"); });
+    SITES_SEARCH.forEach(function (s) { push(s.name, t("app.searchTag", [catName(s.cat)]), "search"); });
+    state.customEngines.forEach(function (c) { push(c.name, t("app.customTag"), "custom"); });
 
     var ul = $("pickerList");
     ul.innerHTML = "";
     if (!list.length) {
       var empty = document.createElement("li");
       empty.className = "empty";
-      empty.textContent = "没有匹配的站点";
+      empty.textContent = t("app.pickerNoMatch");
       ul.appendChild(empty);
       return;
     }
@@ -518,18 +547,24 @@
   }
 
   function setupPickerTabs() {
-    var tabs = ["全部", "AI", "搜索", "自定义"];
+    var tabs = [
+      { id: "all", label: t("app.pickerTabAll") },
+      { id: "ai", label: t("app.pickerTabAi") },
+      { id: "search", label: t("app.pickerTabSearch") },
+      { id: "custom", label: t("app.pickerTabCustom") }
+    ];
     var wrap = $("pickerTabs");
     wrap.innerHTML = "";
-    tabs.forEach(function (t) {
+    tabs.forEach(function (tb, idx) {
       var b = document.createElement("button");
-      b.className = "tab" + (t === "全部" ? " active" : "");
-      b.textContent = t;
+      b.className = "tab" + (idx === 0 ? " active" : "");
+      b.dataset.id = tb.id;
+      b.textContent = tb.label;
       b.addEventListener("click", function () {
         var all = wrap.querySelectorAll(".tab");
         for (var i = 0; i < all.length; i++) all[i].classList.remove("active");
         b.classList.add("active");
-        renderPicker(t);
+        renderPicker(tb.id);
       });
       wrap.appendChild(b);
     });
@@ -584,13 +619,13 @@
       var index = p.index;
       if (d.status === "ok") {
         var detail = (d.detail || "").slice(0, 24);
-        setPanelStatus(index, "ok", detail || "已发送，等待回复…");
+        setPanelStatus(index, "ok", detail || t("app.statusSentWaiting"));
       } else if (d.status === "logged_out") {
-        setPanelStatus(index, "err", "未登录或需登录");
+        setPanelStatus(index, "err", t("app.statusLoggedOut"));
       } else if (d.status === "not_found") {
-        setPanelStatus(index, "err", "未找到输入框（站点已改版）");
+        setPanelStatus(index, "err", t("app.statusNotFound"));
       } else {
-        setPanelStatus(index, "err", "发送失败");
+        setPanelStatus(index, "err", t("app.statusSendFailed"));
       }
     });
 
@@ -603,15 +638,15 @@
     $("modal").addEventListener("click", function (e) {
       if (e.target === $("modal")) closeModal();
     });
-    $("btnAddPanel").addEventListener("click", function () { openPicker("选择要添加的站点", -1); });
-    $("btnAddPanel2").addEventListener("click", function () { openPicker("选择要添加的站点", -1); });
+    $("btnAddPanel").addEventListener("click", function () { openPicker(t("app.pickerAddTitle"), -1); });
+    $("btnAddPanel2").addEventListener("click", function () { openPicker(t("app.pickerAddTitle"), -1); });
     $("btnClosePicker").addEventListener("click", function () { $("picker").classList.add("hidden"); });
     $("picker").addEventListener("click", function (e) {
       if (e.target === $("picker")) $("picker").classList.add("hidden");
     });
     $("pickerSearch").addEventListener("input", function () {
       var active = $("pickerTabs").querySelector(".tab.active");
-      renderPicker(active ? active.textContent : "全部");
+      renderPicker(active ? active.dataset.id : "all");
     });
 
     var radios = document.querySelectorAll('input[name="theme"]');
@@ -626,8 +661,8 @@
     $("btnSaveWs").addEventListener("click", function () {
       if (!state.panels.length) return;
       var n = 1;
-      while (state.workspaces.some(function (w) { return w.name === "工作区 " + n; })) n++;
-      state.workspaces.push({ id: "ws-" + Date.now(), name: "工作区 " + n, engines: state.panels.slice() });
+      while (state.workspaces.some(function (w) { return w.name === t("app.wsAutoName", [n]); })) n++;
+      state.workspaces.push({ id: "ws-" + Date.now(), name: t("app.wsAutoName", [n]), engines: state.panels.slice() });
       saveSettings();
       render();
     });
@@ -636,9 +671,9 @@
       var name = $("ceName").value.trim();
       var url = $("ceUrl").value.trim();
       if (!name || !url) return;
-      if (url.indexOf("%s") < 0) { alert("URL 模板必须包含 %s 占位符"); return; }
-      if (!/^https?:\/\//.test(url)) { alert("URL 必须以 http(s):// 开头"); return; }
-      if (state.customEngines.some(function (c) { return c.name === name; })) { alert("同名引擎已存在"); return; }
+      if (url.indexOf("%s") < 0) { alert(t("app.ceAlertPercent")); return; }
+      if (!/^https?:\/\//.test(url)) { alert(t("app.ceAlertScheme")); return; }
+      if (state.customEngines.some(function (c) { return c.name === name; })) { alert(t("app.ceAlertDuplicate")); return; }
       state.customEngines.push({ name: name, url: url });
       $("ceName").value = "";
       $("ceUrl").value = "";
@@ -653,6 +688,7 @@
 
   loadSettings().then(function (s) {
     state = s;
+    applyStaticI18n();
     bindEvents();
     handleUrlParams();
     /* 预览模式（未加载扩展）时显示提示横幅，用户点「知道了」后本次会话隐藏；?nb=1 直接隐藏（用于截图/嵌入） */
