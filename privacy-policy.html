@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Multi AI 多引擎搜索 · 隐私权政策 / Privacy Policy</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif; max-width: 820px; margin: 0 auto; padding: 32px 20px 64px; color: #1a1b1c; line-height: 1.7; }
+  h1 { font-size: 22px; } h2 { font-size: 17px; margin-top: 28px; } h3 { font-size: 15px; }
+  .lang { border: 1px solid #e4e3dd; border-radius: 12px; padding: 4px 12px; display: inline-block; font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+  hr { border: 0; border-top: 1px solid #e4e3dd; margin: 36px 0; }
+  code { background: #f4f3ee; padding: 1px 6px; border-radius: 6px; font-size: 13px; }
+  a { color: #0e7490; }
+</style>
+</head>
+<body>
+
+<span class="lang">中文</span>
+<h1>Multi AI 多引擎搜索 —— 隐私权政策</h1>
+<p><strong>生效日期：2026 年 9 月 30 日</strong></p>
+
+<h2>一、概述</h2>
+<p>「Multi AI 多引擎搜索」（以下简称“本扩展”）是一款 Chrome 浏览器扩展，用于在单一页面内同时展示多个搜索引擎与 AI 助手网站，并在底部统一输入栏输入一次后，同时向各面板发起搜索或对话。</p>
+<p>本扩展由 <strong>gyaoshi</strong> 开发并发布。本政策说明本扩展对用户数据的处理方式。</p>
+
+<h2>二、数据收集</h2>
+<p><strong>本扩展不收集任何个人信息，不收集任何使用数据，不上传任何用户数据。</strong></p>
+<ul>
+  <li>不收集浏览历史、网页内容、表单输入、登录凭据、Cookie 或任何个人身份信息；</li>
+  <li>不包含任何远程代码、不调用任何外部脚本或远程配置、不向开发者服务器发送任何请求；</li>
+  <li>本扩展完全在本地运行。</li>
+</ul>
+
+<h2>三、本地与同步存储</h2>
+<p>为保存你的偏好设置（面板组合、工作区、自定义搜索引擎、主题），本扩展使用 Chrome 的 <code>chrome.storage.sync</code> 存储，数据仅保存在你自己的设备与你登录的 Chrome 同步账户中，由 Chrome 官方同步机制管理，扩展开发者无法访问。</p>
+<p>在非扩展环境（例如以本地文件预览）中，设置会保存在浏览器的 <code>localStorage</code> 中，同样仅存在于你自己的设备。</p>
+
+<h2>四、与第三方网站的交互</h2>
+<p>本扩展会在页面中嵌入（iframe）你自行选择的搜索引擎与 AI 助手网站。当你使用底部输入栏输入并发送时，文本会被填入这些网站各自的输入框并提交给对应网站——这与你在这些网站上直接输入、直接提问完全相同。</p>
+<ul>
+  <li>你提交的内容将受<strong>目标网站的隐私政策与服务条款</strong>约束，而非本扩展；</li>
+  <li>本扩展不读取、不保存、不传输你在面板中的对话内容；</li>
+  <li>请注意：请勿在输入栏中输入你不愿公开给目标网站的敏感信息。</li>
+</ul>
+
+<h2>五、权限用途</h2>
+<table>
+  <tr><th>权限</th><th>用途</th></tr>
+  <tr><td><code>storage</code></td><td>保存面板配置、工作区、自定义搜索引擎与主题偏好。</td></tr>
+  <tr><td><code>contextMenus</code></td><td>提供右键菜单，用本扩展快速搜索选中的文字。</td></tr>
+  <tr><td><code>declarativeNetRequest</code></td><td>移除目标站点拒绝 iframe 内嵌的响应头（X-Frame-Options / CSP），使多站点能在同一页面展示；并为搜索引擎改写移动 UA 以获得更好的内嵌效果。</td></tr>
+  <tr><td>主机权限（白名单域名）</td><td>仅覆盖内置的 AI 助手与搜索引擎域名，用于内容脚本与上述网络规则；不使用 <code>&lt;all_urls&gt;</code>。</td></tr>
+</table>
+
+<h2>六、数据共享与出售</h2>
+<p>本扩展不与任何第三方共享、出售或披露用户数据。由于不收集数据，亦不存在数据保留或删除问题。</p>
+
+<h2>七、未成年人</h2>
+<p>本扩展不针对未成年人，也无针对性的数据收集行为。</p>
+
+<h2>八、政策更新</h2>
+<p>如本政策发生变更，将在本页面更新并标注新的生效日期。重大变更会通过扩展更新说明告知。</p>
+
+<h2>九、联系我们</h2>
+<p>如对本政策有任何疑问，请通过 GitHub 仓库提交 Issue：<a href="https://github.com/gyaoshi/multi-ai">https://github.com/gyaoshi/multi-ai</a></p>
+
+<hr />
+
+<span class="lang">English</span>
+<h1>Multi AI Multi-Search — Privacy Policy</h1>
+<p><strong>Effective date: September 30, 2026</strong></p>
+
+<h2>1. Overview</h2>
+<p>"Multi AI Multi-Search" (the "Extension") is a Chrome browser extension that displays multiple search engines and AI assistant websites side by side on a single page, and sends one query from a unified input bar to all panels at once.</p>
+<p>The Extension is developed and published by <strong>gyaoshi</strong>. This policy explains how the Extension handles user data.</p>
+
+<h2>2. Data Collection</h2>
+<p><strong>The Extension does not collect any personal information, any usage data, or upload any user data.</strong></p>
+<ul>
+  <li>It does not collect browsing history, page content, form input, credentials, cookies, or any personally identifiable information;</li>
+  <li>It contains no remote code, loads no external scripts or remote configuration, and sends no requests to any developer-controlled server;</li>
+  <li>The Extension runs entirely locally.</li>
+</ul>
+
+<h2>3. Local and Sync Storage</h2>
+<p>To save your preferences (panel layout, workspaces, custom search engines, theme), the Extension uses Chrome's <code>chrome.storage.sync</code>. Data is stored only on your own device and in your logged-in Chrome sync account, managed by Chrome's official sync mechanism; the developer cannot access it.</p>
+<p>In non-extension contexts (e.g., previewing as a local file), settings are stored in the browser's <code>localStorage</code>, again only on your own device.</p>
+
+<h2>4. Interaction with Third-Party Websites</h2>
+<p>The Extension embeds (via iframes) the search engine and AI assistant websites you choose. When you type in the unified input bar and send, the text is placed into each website's own input field and submitted to that website — exactly as if you had typed and asked on those websites directly.</p>
+<ul>
+  <li>Content you submit is governed by the <strong>privacy policy and terms of service of the target website</strong>, not by the Extension;</li>
+  <li>The Extension does not read, store, or transmit your conversations inside the panels;</li>
+  <li>Please do not enter sensitive information you would not want shared with the target websites.</li>
+</ul>
+
+<h2>5. Permission Usage</h2>
+<table>
+  <tr><th>Permission</th><th>Purpose</th></tr>
+  <tr><td><code>storage</code></td><td>Save panel layout, workspaces, custom search engines, and theme preferences.</td></tr>
+  <tr><td><code>contextMenus</code></td><td>Provide a right-click menu to quickly search selected text with the Extension.</td></tr>
+  <tr><td><code>declarativeNetRequest</code></td><td>Remove response headers (X-Frame-Options / CSP) that prevent iframe embedding, so multiple sites can display on one page; rewrite the User-Agent for search engines for a better embedded experience.</td></tr>
+  <tr><td>Host permissions (whitelisted domains)</td><td>Cover only the built-in AI assistant and search engine domains, used by content scripts and the rules above; <code>&lt;all_urls&gt;</code> is not used.</td></tr>
+</table>
+
+<h2>6. Sharing and Sale of Data</h2>
+<p>The Extension does not share, sell, or disclose user data to any third party. Since no data is collected, there is nothing to retain or delete.</p>
+
+<h2>7. Children</h2>
+<p>The Extension is not directed at children and performs no targeted data collection.</p>
+
+<h2>8. Policy Changes</h2>
+<p>If this policy changes, this page will be updated with a new effective date. Significant changes will be communicated through extension update notes.</p>
+
+<h2>9. Contact</h2>
+<p>For any questions about this policy, please open an issue on the GitHub repository: <a href="https://github.com/gyaoshi/multi-ai">https://github.com/gyaoshi/multi-ai</a></p>
+
+</body>
+</html>
