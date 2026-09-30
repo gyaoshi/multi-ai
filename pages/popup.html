@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multi AI</title>
+  <style>
+    body {
+      width: 260px;
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: #0e141b;
+      color: #e8eef5;
+    }
+    .brand { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .brand b { color: #2dd4bf; }
+    .desc { font-size: 12px; color: #93a3b4; margin-bottom: 14px; line-height: 1.5; }
+    button {
+      width: 100%;
+      padding: 10px 0;
+      border: 0;
+      border-radius: 10px;
+      background: #2dd4bf;
+      color: #06211d;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.08); }
+    .hint { font-size: 11px; color: #5f7182; margin-top: 12px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="brand">Multi AI <b>多引擎搜索</b></div>
+  <div class="desc">一个页面同时打开多个搜索引擎与 AI 对话，底部输入一次，全部面板同时搜索、同时开始对话。</div>
+  <button id="open">打开 Multi AI 页面</button>
+  <div class="hint">提示：首次使用请先在各个 AI 站点登录；面板右上角「↗」可在新标签页打开站点登录。</div>
+  <script src="popup.js"></script>
+</body>
+</html>
