@@ -39,9 +39,9 @@
   }
   /* 默认工作区按当前语言显示；用户自定义工作区显示原名称 */
   function wsDisplayName(w) {
-    if (w.id === "ws-ai") return t("ws.aiFamily");
-    if (w.id === "ws-global") return t("ws.globalSearch");
-    if (w.id === "ws-cn") return t("ws.chineseSearch");
+    if (w.id === "ws-ai") return t("ws_aiFamily");
+    if (w.id === "ws-global") return t("ws_globalSearch");
+    if (w.id === "ws-cn") return t("ws_chineseSearch");
     return w.name;
   }
   /* 静态 HTML 文案本地化（data-i18n / placeholder / title / html） */
@@ -137,13 +137,13 @@
   function renderWorkspaces() {
     var wrap = $("workspaceChips");
     wrap.innerHTML = "";
-    var chips = [{ id: "", name: t("app.customChip") }];
+    var chips = [{ id: "", name: t("app_customChip") }];
     state.workspaces.forEach(function (w) { chips.push(w); });
     chips.forEach(function (c) {
       var el = document.createElement("span");
       el.className = "chip" + (state.activeWorkspace === c.id ? " active" : "");
       el.textContent = wsDisplayName(c);
-      el.title = t("app.applyWsTitle", [wsDisplayName(c)]);
+      el.title = t("app_applyWsTitle", [wsDisplayName(c)]);
       el.addEventListener("click", function () {
         if (c.id) {
           state.panels = c.engines.slice();
@@ -182,34 +182,34 @@
     var nameEl = document.createElement("span");
     nameEl.className = "panel-name";
     nameEl.textContent = name;
-    nameEl.title = t("app.panelNameTitle");
+    nameEl.title = t("app_panelNameTitle");
     nameEl.addEventListener("click", function () {
       var idx = parseInt(card.dataset.index, 10);
-      openPicker(t("app.pickerReplaceTitle", [name]), idx);
+      openPicker(t("app_pickerReplaceTitle", [name]), idx);
     });
 
     var typeEl = document.createElement("span");
     typeEl.className = "panel-type";
-    typeEl.textContent = def && def.type === "ai" ? t("app.aiPanelType") : t("app.searchPanelType");
+    typeEl.textContent = def && def.type === "ai" ? t("app_aiPanelType") : t("app_searchPanelType");
 
     var statusEl = document.createElement("span");
     statusEl.className = "panel-status";
-    statusEl.innerHTML = '<span class="dot"></span><span class="st-text">' + t("app.statusReady") + '</span>';
+    statusEl.innerHTML = '<span class="dot"></span><span class="st-text">' + t("app_statusReady") + '</span>';
 
     var ops = document.createElement("span");
     ops.className = "panel-ops";
-    ops.appendChild(iconBtn("↻", t("app.refreshTitle"), function () {
+    ops.appendChild(iconBtn("↻", t("app_refreshTitle"), function () {
       var idx = parseInt(card.dataset.index, 10);
       var frame = card.querySelector("iframe");
       if (frame) frame.src = frame.src;
-      setPanelStatus(idx, "", t("app.refreshStatus"));
-      setTimeout(function () { setPanelStatus(idx, "", t("app.statusReady")); }, 400);
+      setPanelStatus(idx, "", t("app_refreshStatus"));
+      setTimeout(function () { setPanelStatus(idx, "", t("app_statusReady")); }, 400);
     }));
-    ops.appendChild(iconBtn("↗", t("app.openNewTabTitle"), function () {
+    ops.appendChild(iconBtn("↗", t("app_openNewTabTitle"), function () {
       var frame = card.querySelector("iframe");
       if (frame && frame.src) window.open(frame.src, "_blank");
     }));
-    ops.appendChild(iconBtn("✕", t("app.removeTitle"), function () {
+    ops.appendChild(iconBtn("✕", t("app_removeTitle"), function () {
       var idx = parseInt(card.dataset.index, 10);
       state.panels.splice(idx, 1);
       state.activeWorkspace = "";
@@ -231,12 +231,12 @@
       var idx = parseInt(card.dataset.index, 10);
       var st = panelStates[idx] && panelStates[idx].status;
       if (st === "sending" || st === "ok") return;
-      setPanelStatus(idx, "", t("app.statusReady"));
+      setPanelStatus(idx, "", t("app_statusReady"));
     });
 
     card.appendChild(head);
     card.appendChild(frame);
-    panelStates[index] = { status: "", text: t("app.statusReady") };
+    panelStates[index] = { status: "", text: t("app_statusReady") };
     return card;
   }
 
@@ -259,7 +259,7 @@
       if (!grid.querySelector(".empty-hint")) {
         var empty = document.createElement("div");
         empty.className = "empty-hint";
-        empty.textContent = t("app.emptyPanels");
+        empty.textContent = t("app_emptyPanels");
         grid.appendChild(empty);
       }
     } else {
@@ -308,7 +308,7 @@
       if (ty) ty.id = "panel-type-" + i;
       var st = el.querySelector(".panel-status");
       if (st) st.id = "panel-status-" + i;
-      if (!panelStates[i]) panelStates[i] = { status: "", text: t("app.statusReady") };
+      if (!panelStates[i]) panelStates[i] = { status: "", text: t("app_statusReady") };
       if (grid.children[i] !== el) grid.appendChild(el);   /* appendChild 移动不重载 iframe */
     });
   }
@@ -331,22 +331,22 @@
   function sendToAiPanel(index, name, q) {
     if (!hasExt) {
       /* 预览模式：没有内容脚本，AI 对话不会发生，给出明确提示 */
-      setPanelStatus(index, "err", t("app.statusPreview"));
+      setPanelStatus(index, "err", t("app_statusPreview"));
       return;
     }
     var frame = $("iframe-" + index);
     if (!frame || !frame.contentWindow) {
-      setPanelStatus(index, "err", t("app.statusNotReady"));
+      setPanelStatus(index, "err", t("app_statusNotReady"));
       return;
     }
     var requestId = name + "-" + Date.now() + "-" + index;
-    setPanelStatus(index, "sending", t("app.statusSending"));
+    setPanelStatus(index, "sending", t("app_statusSending"));
     pending[requestId] = {
       index: index,
       timer: setTimeout(function () {
         if (pending[requestId]) {
           delete pending[requestId];
-          setPanelStatus(index, "err", t("app.statusTimeout"));
+          setPanelStatus(index, "err", t("app_statusTimeout"));
         }
       }, 15000)
     };
@@ -356,7 +356,7 @@
     } catch (e) {
       clearTimeout(pending[requestId] && pending[requestId].timer);
       delete pending[requestId];
-      setPanelStatus(index, "err", t("app.statusSendFailed"));
+      setPanelStatus(index, "err", t("app_statusSendFailed"));
     }
   }
 
@@ -371,7 +371,7 @@
         if (!url) return;
         var frame = $("iframe-" + i);
         if (frame) {
-          setPanelStatus(i, "search", t("app.statusSearching"));
+          setPanelStatus(i, "search", t("app_statusSearching"));
           frame.src = url;
         }
       } else if (def.type === "ai") {
@@ -407,20 +407,20 @@
       var def = engineOf(name);
       var tag = document.createElement("span");
       tag.className = "tag";
-      tag.textContent = def && def.type === "ai" ? t("app.pickerTabAi") : t("app.pickerTabSearch");
+      tag.textContent = def && def.type === "ai" ? t("app_pickerTabAi") : t("app_pickerTabSearch");
       var ops = document.createElement("span");
       ops.className = "row";
-      ops.appendChild(iconBtn("↑", t("app.moveUp"), function () {
+      ops.appendChild(iconBtn("↑", t("app_moveUp"), function () {
         if (i === 0) return;
         var t = state.panels[i]; state.panels[i] = state.panels[i - 1]; state.panels[i - 1] = t;
         saveSettings(); render();
       }));
-      ops.appendChild(iconBtn("↓", t("app.moveDown"), function () {
+      ops.appendChild(iconBtn("↓", t("app_moveDown"), function () {
         if (i >= state.panels.length - 1) return;
         var t = state.panels[i]; state.panels[i] = state.panels[i + 1]; state.panels[i + 1] = t;
         saveSettings(); render();
       }));
-      ops.appendChild(iconBtn("✕", t("app.removeShort"), function () {
+      ops.appendChild(iconBtn("✕", t("app_removeShort"), function () {
         state.panels.splice(i, 1);
         saveSettings(); render();
       }));
@@ -442,12 +442,12 @@
       nm.title = w.engines.join("、");
       var ops = document.createElement("span");
       ops.className = "row";
-      ops.appendChild(iconBtn(t("app.applyWs"), t("app.applyWsTitle2"), function () {
+      ops.appendChild(iconBtn(t("app_applyWs"), t("app_applyWsTitle2"), function () {
         state.panels = w.engines.slice();
         state.activeWorkspace = w.id;
         saveSettings(); render(); closeModal();
       }));
-      ops.appendChild(iconBtn("✕", t("app.deleteTitle"), function () {
+      ops.appendChild(iconBtn("✕", t("app_deleteTitle"), function () {
         state.workspaces = state.workspaces.filter(function (x) { return x.id !== w.id; });
         if (state.activeWorkspace === w.id) state.activeWorkspace = "";
         saveSettings(); render();
@@ -469,10 +469,10 @@
       nm.title = c.url;
       var tag = document.createElement("span");
       tag.className = "tag";
-      tag.textContent = t("app.customTag");
+      tag.textContent = t("app_customTag");
       var ops = document.createElement("span");
       ops.className = "row";
-      ops.appendChild(iconBtn("✕", t("app.deleteTitle"), function () {
+      ops.appendChild(iconBtn("✕", t("app_deleteTitle"), function () {
         state.customEngines = state.customEngines.filter(function (x) { return x.name !== c.name; });
         state.panels = state.panels.filter(function (p) { return p !== c.name; });
         saveSettings(); render();
@@ -507,16 +507,16 @@
       list.push({ name: name, tag: tag });
     }
 
-    SITES_AI.forEach(function (s) { push(s.name, t("app.pickerTabAi"), "ai"); });
-    SITES_SEARCH.forEach(function (s) { push(s.name, t("app.searchTag", [catName(s.cat)]), "search"); });
-    state.customEngines.forEach(function (c) { push(c.name, t("app.customTag"), "custom"); });
+    SITES_AI.forEach(function (s) { push(s.name, t("app_pickerTabAi"), "ai"); });
+    SITES_SEARCH.forEach(function (s) { push(s.name, t("app_searchTag", [catName(s.cat)]), "search"); });
+    state.customEngines.forEach(function (c) { push(c.name, t("app_customTag"), "custom"); });
 
     var ul = $("pickerList");
     ul.innerHTML = "";
     if (!list.length) {
       var empty = document.createElement("li");
       empty.className = "empty";
-      empty.textContent = t("app.pickerNoMatch");
+      empty.textContent = t("app_pickerNoMatch");
       ul.appendChild(empty);
       return;
     }
@@ -548,10 +548,10 @@
 
   function setupPickerTabs() {
     var tabs = [
-      { id: "all", label: t("app.pickerTabAll") },
-      { id: "ai", label: t("app.pickerTabAi") },
-      { id: "search", label: t("app.pickerTabSearch") },
-      { id: "custom", label: t("app.pickerTabCustom") }
+      { id: "all", label: t("app_pickerTabAll") },
+      { id: "ai", label: t("app_pickerTabAi") },
+      { id: "search", label: t("app_pickerTabSearch") },
+      { id: "custom", label: t("app_pickerTabCustom") }
     ];
     var wrap = $("pickerTabs");
     wrap.innerHTML = "";
@@ -619,13 +619,13 @@
       var index = p.index;
       if (d.status === "ok") {
         var detail = (d.detail || "").slice(0, 24);
-        setPanelStatus(index, "ok", detail || t("app.statusSentWaiting"));
+        setPanelStatus(index, "ok", detail || t("app_statusSentWaiting"));
       } else if (d.status === "logged_out") {
-        setPanelStatus(index, "err", t("app.statusLoggedOut"));
+        setPanelStatus(index, "err", t("app_statusLoggedOut"));
       } else if (d.status === "not_found") {
-        setPanelStatus(index, "err", t("app.statusNotFound"));
+        setPanelStatus(index, "err", t("app_statusNotFound"));
       } else {
-        setPanelStatus(index, "err", t("app.statusSendFailed"));
+        setPanelStatus(index, "err", t("app_statusSendFailed"));
       }
     });
 
@@ -638,8 +638,8 @@
     $("modal").addEventListener("click", function (e) {
       if (e.target === $("modal")) closeModal();
     });
-    $("btnAddPanel").addEventListener("click", function () { openPicker(t("app.pickerAddTitle"), -1); });
-    $("btnAddPanel2").addEventListener("click", function () { openPicker(t("app.pickerAddTitle"), -1); });
+    $("btnAddPanel").addEventListener("click", function () { openPicker(t("app_pickerAddTitle"), -1); });
+    $("btnAddPanel2").addEventListener("click", function () { openPicker(t("app_pickerAddTitle"), -1); });
     $("btnClosePicker").addEventListener("click", function () { $("picker").classList.add("hidden"); });
     $("picker").addEventListener("click", function (e) {
       if (e.target === $("picker")) $("picker").classList.add("hidden");
@@ -661,8 +661,8 @@
     $("btnSaveWs").addEventListener("click", function () {
       if (!state.panels.length) return;
       var n = 1;
-      while (state.workspaces.some(function (w) { return w.name === t("app.wsAutoName", [n]); })) n++;
-      state.workspaces.push({ id: "ws-" + Date.now(), name: t("app.wsAutoName", [n]), engines: state.panels.slice() });
+      while (state.workspaces.some(function (w) { return w.name === t("app_wsAutoName", [n]); })) n++;
+      state.workspaces.push({ id: "ws-" + Date.now(), name: t("app_wsAutoName", [n]), engines: state.panels.slice() });
       saveSettings();
       render();
     });
@@ -671,9 +671,9 @@
       var name = $("ceName").value.trim();
       var url = $("ceUrl").value.trim();
       if (!name || !url) return;
-      if (url.indexOf("%s") < 0) { alert(t("app.ceAlertPercent")); return; }
-      if (!/^https?:\/\//.test(url)) { alert(t("app.ceAlertScheme")); return; }
-      if (state.customEngines.some(function (c) { return c.name === name; })) { alert(t("app.ceAlertDuplicate")); return; }
+      if (url.indexOf("%s") < 0) { alert(t("app_ceAlertPercent")); return; }
+      if (!/^https?:\/\//.test(url)) { alert(t("app_ceAlertScheme")); return; }
+      if (state.customEngines.some(function (c) { return c.name === name; })) { alert(t("app_ceAlertDuplicate")); return; }
       state.customEngines.push({ name: name, url: url });
       $("ceName").value = "";
       $("ceUrl").value = "";

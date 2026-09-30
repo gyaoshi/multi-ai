@@ -1,94 +1,278 @@
 {
-  "extension_name": { "message": "Multi AI 多引擎搜索" },
-  "extension_description": { "message": "一个页面同时打开多个搜索引擎与多个 AI 对话，底部输入一次，所有面板同时搜索、同时开始对话。" },
-  "actionTitle": { "message": "打开 Multi AI" },
-  "app.subtitle": { "message": "多引擎同搜 · 多 AI 同问" },
-  "app.addPanel": { "message": "＋ 面板" },
-  "app.addPanelTitle": { "message": "添加面板" },
-  "app.settings": { "message": "⚙ 设置" },
-  "app.settingsTitle": { "message": "设置" },
-  "app.previewBanner": { "message": "预览模式（未加载扩展）：AI 面板对话不会真正发生。完整功能请在 <b>chrome://extensions</b> 开启「开发者模式」→「加载已解压的扩展程序」，选择 <b>multi-ai</b> 目录。" },
-  "app.previewOk": { "message": "知道了" },
-  "app.queryPlaceholder": { "message": "输入内容，回车或点发送 —— 所有面板同时搜索 / 同时开始对话" },
-  "app.send": { "message": "发送" },
-  "app.closeTitle": { "message": "关闭" },
-  "app.themeSection": { "message": "主题" },
-  "app.themeDark": { "message": "深色" },
-  "app.themeLight": { "message": "浅色" },
-  "app.panelsSection": { "message": "面板（数量可自定义，自动平分整行宽度）" },
-  "app.addPanel2": { "message": "＋ 添加面板" },
-  "app.wsSection": { "message": "工作区" },
-  "app.saveWs": { "message": "把当前面板存为工作区" },
-  "app.ceSection": { "message": "自定义搜索引擎" },
-  "app.ceNamePlaceholder": { "message": "名称（如：我的引擎）" },
-  "app.ceUrlPlaceholder": { "message": "URL 模板，含 %s（如 https://x.com/search?q=%s）" },
-  "app.addBtn": { "message": "添加" },
-  "app.pickerTitle": { "message": "选择站点" },
-  "app.pickerSearchPlaceholder": { "message": "搜索站点…" },
-  "app.pickerTabAll": { "message": "全部" },
-  "app.pickerTabAi": { "message": "AI" },
-  "app.pickerTabSearch": { "message": "搜索" },
-  "app.pickerTabCustom": { "message": "自定义" },
-  "app.customChip": { "message": "自定义" },
-  "app.applyWsTitle": { "message": "应用工作区：$1" },
-  "app.panelNameTitle": { "message": "点击更换站点" },
-  "app.aiPanelType": { "message": "AI 对话" },
-  "app.searchPanelType": { "message": "搜索引擎" },
-  "app.statusReady": { "message": "就绪" },
-  "app.refreshTitle": { "message": "刷新面板" },
-  "app.refreshStatus": { "message": "刷新中…" },
-  "app.openNewTabTitle": { "message": "在新标签页打开" },
-  "app.removeTitle": { "message": "移除面板" },
-  "app.removeShort": { "message": "移除" },
-  "app.moveUp": { "message": "上移" },
-  "app.moveDown": { "message": "下移" },
-  "app.applyWs": { "message": "应用" },
-  "app.applyWsTitle2": { "message": "应用此工作区" },
-  "app.deleteTitle": { "message": "删除" },
-  "app.customTag": { "message": "自定义" },
-  "app.emptyPanels": { "message": "暂无面板 —— 点右上角「＋ 面板」添加，或在顶栏选择一个工作区" },
-  "app.statusPreview": { "message": "预览模式：需加载扩展后才能真正对话" },
-  "app.statusNotReady": { "message": "面板未就绪，请刷新后重试" },
-  "app.statusSending": { "message": "发送中…" },
-  "app.statusTimeout": { "message": "超时未确认" },
-  "app.statusSendFailed": { "message": "发送失败" },
-  "app.statusSearching": { "message": "搜索中…" },
-  "app.statusSentWaiting": { "message": "已发送，等待回复…" },
-  "app.statusLoggedOut": { "message": "未登录或需登录" },
-  "app.statusNotFound": { "message": "未找到输入框（站点已改版）" },
-  "app.pickerNoMatch": { "message": "没有匹配的站点" },
-  "app.pickerReplaceTitle": { "message": "替换 “$1” 为…" },
-  "app.pickerAddTitle": { "message": "选择要添加的站点" },
-  "app.ceAlertPercent": { "message": "URL 模板必须包含 %s 占位符" },
-  "app.ceAlertScheme": { "message": "URL 必须以 http(s):// 开头" },
-  "app.ceAlertDuplicate": { "message": "同名引擎已存在" },
-  "app.wsAutoName": { "message": "工作区 $1" },
-  "app.searchTag": { "message": "搜索 · $1" },
-  "ws.aiFamily": { "message": "AI 全家桶" },
-  "ws.globalSearch": { "message": "全球搜索" },
-  "ws.chineseSearch": { "message": "中文搜索" },
-  "cat.general": { "message": "综合" },
-  "cat.chinese": { "message": "中文" },
-  "cat.academic": { "message": "学术" },
-  "cat.community": { "message": "社区" },
-  "cat.dev": { "message": "开发" },
-  "cat.video": { "message": "视频" },
-  "cat.finance": { "message": "财经" },
-  "cat.news": { "message": "新闻" },
-  "cat.entertainment": { "message": "娱乐" },
-  "cat.dictionary": { "message": "词典" },
-  "cat.design": { "message": "设计" },
-  "cat.shopping": { "message": "购物" },
-  "popup.brand2": { "message": "多引擎搜索" },
-  "popup.desc": { "message": "一个页面同时打开多个搜索引擎与 AI 对话，底部输入一次，全部面板同时搜索、同时开始对话。" },
-  "popup.open": { "message": "打开 Multi AI 页面" },
-  "popup.hint": { "message": "提示：首次使用请先在各个 AI 站点登录；面板右上角「↗」可在新标签页打开站点登录。" },
-  "ctx.main": { "message": "Multi AI 搜索" },
-  "ctx.current": { "message": "用当前工作区搜索“%s”" },
-  "ctx.wsItem": { "message": "$1：“%s”" },
-  "ad.noAdapter": { "message": "无适配器" },
-  "ad.looksLoggedOut": { "message": "疑似未登录或处于登录页" },
-  "ad.inputNotFound": { "message": "未找到输入框（站点结构可能已变化）" },
-  "ad.sentCleared": { "message": "已发送（$1，输入框已清空）" },
-  "ad.notConfirmed": { "message": "文字已填入，但发送未确认（按钮可能未点亮或站点改版）" }
+  "extension_name": {
+    "message": "Multi AI 多引擎搜索"
+  },
+  "extension_description": {
+    "message": "一个页面同时打开多个搜索引擎与多个 AI 对话，底部输入一次，所有面板同时搜索、同时开始对话。"
+  },
+  "actionTitle": {
+    "message": "打开 Multi AI"
+  },
+  "app_subtitle": {
+    "message": "多引擎同搜 · 多 AI 同问"
+  },
+  "app_addPanel": {
+    "message": "＋ 面板"
+  },
+  "app_addPanelTitle": {
+    "message": "添加面板"
+  },
+  "app_settings": {
+    "message": "⚙ 设置"
+  },
+  "app_settingsTitle": {
+    "message": "设置"
+  },
+  "app_previewBanner": {
+    "message": "预览模式（未加载扩展）：AI 面板对话不会真正发生。完整功能请在 <b>chrome://extensions</b> 开启「开发者模式」→「加载已解压的扩展程序」，选择 <b>multi-ai</b> 目录。"
+  },
+  "app_previewOk": {
+    "message": "知道了"
+  },
+  "app_queryPlaceholder": {
+    "message": "输入内容，回车或点发送 —— 所有面板同时搜索 / 同时开始对话"
+  },
+  "app_send": {
+    "message": "发送"
+  },
+  "app_closeTitle": {
+    "message": "关闭"
+  },
+  "app_themeSection": {
+    "message": "主题"
+  },
+  "app_themeDark": {
+    "message": "深色"
+  },
+  "app_themeLight": {
+    "message": "浅色"
+  },
+  "app_panelsSection": {
+    "message": "面板（数量可自定义，自动平分整行宽度）"
+  },
+  "app_addPanel2": {
+    "message": "＋ 添加面板"
+  },
+  "app_wsSection": {
+    "message": "工作区"
+  },
+  "app_saveWs": {
+    "message": "把当前面板存为工作区"
+  },
+  "app_ceSection": {
+    "message": "自定义搜索引擎"
+  },
+  "app_ceNamePlaceholder": {
+    "message": "名称（如：我的引擎）"
+  },
+  "app_ceUrlPlaceholder": {
+    "message": "URL 模板，含 %s（如 https://x.com/search?q=%s）"
+  },
+  "app_addBtn": {
+    "message": "添加"
+  },
+  "app_pickerTitle": {
+    "message": "选择站点"
+  },
+  "app_pickerSearchPlaceholder": {
+    "message": "搜索站点…"
+  },
+  "app_pickerTabAll": {
+    "message": "全部"
+  },
+  "app_pickerTabAi": {
+    "message": "AI"
+  },
+  "app_pickerTabSearch": {
+    "message": "搜索"
+  },
+  "app_pickerTabCustom": {
+    "message": "自定义"
+  },
+  "app_customChip": {
+    "message": "自定义"
+  },
+  "app_applyWsTitle": {
+    "message": "应用工作区：$1"
+  },
+  "app_panelNameTitle": {
+    "message": "点击更换站点"
+  },
+  "app_aiPanelType": {
+    "message": "AI 对话"
+  },
+  "app_searchPanelType": {
+    "message": "搜索引擎"
+  },
+  "app_statusReady": {
+    "message": "就绪"
+  },
+  "app_refreshTitle": {
+    "message": "刷新面板"
+  },
+  "app_refreshStatus": {
+    "message": "刷新中…"
+  },
+  "app_openNewTabTitle": {
+    "message": "在新标签页打开"
+  },
+  "app_removeTitle": {
+    "message": "移除面板"
+  },
+  "app_removeShort": {
+    "message": "移除"
+  },
+  "app_moveUp": {
+    "message": "上移"
+  },
+  "app_moveDown": {
+    "message": "下移"
+  },
+  "app_applyWs": {
+    "message": "应用"
+  },
+  "app_applyWsTitle2": {
+    "message": "应用此工作区"
+  },
+  "app_deleteTitle": {
+    "message": "删除"
+  },
+  "app_customTag": {
+    "message": "自定义"
+  },
+  "app_emptyPanels": {
+    "message": "暂无面板 —— 点右上角「＋ 面板」添加，或在顶栏选择一个工作区"
+  },
+  "app_statusPreview": {
+    "message": "预览模式：需加载扩展后才能真正对话"
+  },
+  "app_statusNotReady": {
+    "message": "面板未就绪，请刷新后重试"
+  },
+  "app_statusSending": {
+    "message": "发送中…"
+  },
+  "app_statusTimeout": {
+    "message": "超时未确认"
+  },
+  "app_statusSendFailed": {
+    "message": "发送失败"
+  },
+  "app_statusSearching": {
+    "message": "搜索中…"
+  },
+  "app_statusSentWaiting": {
+    "message": "已发送，等待回复…"
+  },
+  "app_statusLoggedOut": {
+    "message": "未登录或需登录"
+  },
+  "app_statusNotFound": {
+    "message": "未找到输入框（站点已改版）"
+  },
+  "app_pickerNoMatch": {
+    "message": "没有匹配的站点"
+  },
+  "app_pickerReplaceTitle": {
+    "message": "替换 “$1” 为…"
+  },
+  "app_pickerAddTitle": {
+    "message": "选择要添加的站点"
+  },
+  "app_ceAlertPercent": {
+    "message": "URL 模板必须包含 %s 占位符"
+  },
+  "app_ceAlertScheme": {
+    "message": "URL 必须以 http(s):// 开头"
+  },
+  "app_ceAlertDuplicate": {
+    "message": "同名引擎已存在"
+  },
+  "app_wsAutoName": {
+    "message": "工作区 $1"
+  },
+  "app_searchTag": {
+    "message": "搜索 · $1"
+  },
+  "ws_aiFamily": {
+    "message": "AI 全家桶"
+  },
+  "ws_globalSearch": {
+    "message": "全球搜索"
+  },
+  "ws_chineseSearch": {
+    "message": "中文搜索"
+  },
+  "cat_general": {
+    "message": "综合"
+  },
+  "cat_chinese": {
+    "message": "中文"
+  },
+  "cat_academic": {
+    "message": "学术"
+  },
+  "cat_community": {
+    "message": "社区"
+  },
+  "cat_dev": {
+    "message": "开发"
+  },
+  "cat_video": {
+    "message": "视频"
+  },
+  "cat_finance": {
+    "message": "财经"
+  },
+  "cat_news": {
+    "message": "新闻"
+  },
+  "cat_entertainment": {
+    "message": "娱乐"
+  },
+  "cat_dictionary": {
+    "message": "词典"
+  },
+  "cat_design": {
+    "message": "设计"
+  },
+  "cat_shopping": {
+    "message": "购物"
+  },
+  "popup_brand2": {
+    "message": "多引擎搜索"
+  },
+  "popup_desc": {
+    "message": "一个页面同时打开多个搜索引擎与 AI 对话，底部输入一次，全部面板同时搜索、同时开始对话。"
+  },
+  "popup_open": {
+    "message": "打开 Multi AI 页面"
+  },
+  "popup_hint": {
+    "message": "提示：首次使用请先在各个 AI 站点登录；面板右上角「↗」可在新标签页打开站点登录。"
+  },
+  "ctx_main": {
+    "message": "Multi AI 搜索"
+  },
+  "ctx_current": {
+    "message": "用当前工作区搜索“%s”"
+  },
+  "ctx_wsItem": {
+    "message": "$1：“%s”"
+  },
+  "ad_noAdapter": {
+    "message": "无适配器"
+  },
+  "ad_looksLoggedOut": {
+    "message": "疑似未登录或处于登录页"
+  },
+  "ad_inputNotFound": {
+    "message": "未找到输入框（站点结构可能已变化）"
+  },
+  "ad_sentCleared": {
+    "message": "已发送（$1，输入框已清空）"
+  },
+  "ad_notConfirmed": {
+    "message": "文字已填入，但发送未确认（按钮可能未点亮或站点改版）"
+  }
 }

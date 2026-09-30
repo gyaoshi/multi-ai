@@ -368,7 +368,7 @@
 
   async function perform(siteName, value, requestId) {
     var adapter = ADAPTERS[siteName];
-    if (!adapter) return { requestId: requestId, status: "not_found", detail: t("ad.noAdapter") };
+    if (!adapter) return { requestId: requestId, status: "not_found", detail: t("ad_noAdapter") };
 
     var input = await findInput(adapter);
     if (!input) {
@@ -376,7 +376,7 @@
       return {
         requestId: requestId,
         status: loggedOut ? "logged_out" : "not_found",
-        detail: loggedOut ? t("ad.looksLoggedOut") : t("ad.inputNotFound")
+        detail: loggedOut ? t("ad_looksLoggedOut") : t("ad_inputNotFound")
       };
     }
 
@@ -406,7 +406,7 @@
       cleared = inputEmpty(input);
       method = cleared ? "click+enter" : method;
     }
-    var detail = cleared ? t("ad.sentCleared", [method]) : t("ad.notConfirmed");
+    var detail = cleared ? t("ad_sentCleared", [method]) : t("ad_notConfirmed");
     return {
       requestId: requestId,
       status: "ok",

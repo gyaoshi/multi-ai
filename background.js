@@ -98,9 +98,9 @@ async function installDnrRules() {
 
 /* 默认工作区按当前语言显示；用户自定义工作区显示原名称 */
 function wsName(w) {
-  if (w.id === "ws-ai") return chrome.i18n.getMessage("ws.aiFamily");
-  if (w.id === "ws-global") return chrome.i18n.getMessage("ws.globalSearch");
-  if (w.id === "ws-cn") return chrome.i18n.getMessage("ws.chineseSearch");
+  if (w.id === "ws-ai") return chrome.i18n.getMessage("ws_aiFamily");
+  if (w.id === "ws-global") return chrome.i18n.getMessage("ws_globalSearch");
+  if (w.id === "ws-cn") return chrome.i18n.getMessage("ws_chineseSearch");
   return w.name;
 }
 
@@ -114,13 +114,13 @@ async function rebuildMenus() {
     });
     chrome.contextMenus.create({
       id: "msa-root",
-      title: chrome.i18n.getMessage("ctx.main"),
+      title: chrome.i18n.getMessage("ctx_main"),
       contexts: ["selection"]
     });
     chrome.contextMenus.create({
       id: "msa-current",
       parentId: "msa-root",
-      title: chrome.i18n.getMessage("ctx.current"),
+      title: chrome.i18n.getMessage("ctx_current"),
       contexts: ["selection"]
     });
     const s = await getSettings();
@@ -135,7 +135,7 @@ async function rebuildMenus() {
         chrome.contextMenus.create({
           id: "msa-ws-" + w.id,
           parentId: "msa-root",
-          title: chrome.i18n.getMessage("ctx.wsItem", [wsName(w)]),
+          title: chrome.i18n.getMessage("ctx_wsItem", [wsName(w)]),
           contexts: ["selection"]
         });
       });

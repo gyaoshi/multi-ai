@@ -1,94 +1,278 @@
 {
-  "extension_name": { "message": "Multi AI Recherche multiple" },
-  "extension_description": { "message": "Ouvrez plusieurs moteurs de recherche et plusieurs assistants IA sur une même page : saisissez une fois en bas, tous les panneaux recherchent et démarrent une conversation simultanément." },
-  "actionTitle": { "message": "Ouvrir Multi AI" },
-  "app.subtitle": { "message": "Recherche multiple · Chat multi-IA" },
-  "app.addPanel": { "message": "＋ Panneaux" },
-  "app.addPanelTitle": { "message": "Ajouter un panneau" },
-  "app.settings": { "message": "⚙ Réglages" },
-  "app.settingsTitle": { "message": "Réglages" },
-  "app.previewBanner": { "message": "Mode aperçu (extension non chargée) : les conversations IA ne se produisent pas vraiment. Pour toutes les fonctionnalités, activez le « Mode développeur » → « Charger l'extension non empaquetée » dans <b>chrome://extensions</b> et sélectionnez le dossier <b>multi-ai</b>." },
-  "app.previewOk": { "message": "Compris" },
-  "app.queryPlaceholder": { "message": "Saisissez ici, Entrée ou Envoyer — tous les panneaux recherchent / démarrent une conversation en même temps" },
-  "app.send": { "message": "Envoyer" },
-  "app.closeTitle": { "message": "Fermer" },
-  "app.themeSection": { "message": "Thème" },
-  "app.themeDark": { "message": "Sombre" },
-  "app.themeLight": { "message": "Clair" },
-  "app.panelsSection": { "message": "Panneaux (nombre personnalisable, partage équitable de la largeur)" },
-  "app.addPanel2": { "message": "＋ Ajouter un panneau" },
-  "app.wsSection": { "message": "Espaces de travail" },
-  "app.saveWs": { "message": "Enregistrer les panneaux actuels comme espace de travail" },
-  "app.ceSection": { "message": "Moteurs de recherche personnalisés" },
-  "app.ceNamePlaceholder": { "message": "Nom (ex. : Mon moteur)" },
-  "app.ceUrlPlaceholder": { "message": "Modèle d'URL contenant %s (ex. : https://x.com/search?q=%s)" },
-  "app.addBtn": { "message": "Ajouter" },
-  "app.pickerTitle": { "message": "Choisir un site" },
-  "app.pickerSearchPlaceholder": { "message": "Rechercher un site…" },
-  "app.pickerTabAll": { "message": "Tout" },
-  "app.pickerTabAi": { "message": "IA" },
-  "app.pickerTabSearch": { "message": "Recherche" },
-  "app.pickerTabCustom": { "message": "Personnalisé" },
-  "app.customChip": { "message": "Personnalisé" },
-  "app.applyWsTitle": { "message": "Appliquer l'espace de travail : $1" },
-  "app.panelNameTitle": { "message": "Cliquer pour changer de site" },
-  "app.aiPanelType": { "message": "Conversation IA" },
-  "app.searchPanelType": { "message": "Moteur de recherche" },
-  "app.statusReady": { "message": "Prêt" },
-  "app.refreshTitle": { "message": "Actualiser le panneau" },
-  "app.refreshStatus": { "message": "Actualisation…" },
-  "app.openNewTabTitle": { "message": "Ouvrir dans un nouvel onglet" },
-  "app.removeTitle": { "message": "Retirer le panneau" },
-  "app.removeShort": { "message": "Retirer" },
-  "app.moveUp": { "message": "Monter" },
-  "app.moveDown": { "message": "Descendre" },
-  "app.applyWs": { "message": "Appliquer" },
-  "app.applyWsTitle2": { "message": "Appliquer cet espace de travail" },
-  "app.deleteTitle": { "message": "Supprimer" },
-  "app.customTag": { "message": "Personnalisé" },
-  "app.emptyPanels": { "message": "Aucun panneau — cliquez sur « ＋ Panneaux » en haut à droite, ou choisissez un espace de travail en haut." },
-  "app.statusPreview": { "message": "Mode aperçu : chargez l'extension pour vraiment dialoguer" },
-  "app.statusNotReady": { "message": "Panneau non prêt, actualisez puis réessayez" },
-  "app.statusSending": { "message": "Envoi…" },
-  "app.statusTimeout": { "message": "Délai dépassé, pas de confirmation" },
-  "app.statusSendFailed": { "message": "Échec de l'envoi" },
-  "app.statusSearching": { "message": "Recherche…" },
-  "app.statusSentWaiting": { "message": "Envoyé, en attente de réponse…" },
-  "app.statusLoggedOut": { "message": "Non connecté ou connexion requise" },
-  "app.statusNotFound": { "message": "Champ de saisie introuvable (site modifié)" },
-  "app.pickerNoMatch": { "message": "Aucun site correspondant" },
-  "app.pickerReplaceTitle": { "message": "Remplacer « $1 » par…" },
-  "app.pickerAddTitle": { "message": "Choisir un site à ajouter" },
-  "app.ceAlertPercent": { "message": "Le modèle d'URL doit contenir le jeton %s" },
-  "app.ceAlertScheme": { "message": "L'URL doit commencer par http(s)://" },
-  "app.ceAlertDuplicate": { "message": "Un moteur portant ce nom existe déjà" },
-  "app.wsAutoName": { "message": "Espace de travail $1" },
-  "app.searchTag": { "message": "Recherche · $1" },
-  "ws.aiFamily": { "message": "Famille IA" },
-  "ws.globalSearch": { "message": "Recherche mondiale" },
-  "ws.chineseSearch": { "message": "Recherche chinoise" },
-  "cat.general": { "message": "Général" },
-  "cat.chinese": { "message": "Chinois" },
-  "cat.academic": { "message": "Académique" },
-  "cat.community": { "message": "Communauté" },
-  "cat.dev": { "message": "Développement" },
-  "cat.video": { "message": "Vidéo" },
-  "cat.finance": { "message": "Finance" },
-  "cat.news": { "message": "Actualités" },
-  "cat.entertainment": { "message": "Divertissement" },
-  "cat.dictionary": { "message": "Dictionnaire" },
-  "cat.design": { "message": "Design" },
-  "cat.shopping": { "message": "Shopping" },
-  "popup.brand2": { "message": "Recherche multiple" },
-  "popup.desc": { "message": "Ouvrez plusieurs moteurs de recherche et conversations IA sur une même page : saisissez une fois en bas et tous les panneaux recherchent / dialoguent en même temps." },
-  "popup.open": { "message": "Ouvrir la page Multi AI" },
-  "popup.hint": { "message": "Astuce : connectez-vous d'abord sur chaque site IA ; utilisez « ↗ » en haut à droite d'un panneau pour ouvrir le site dans un nouvel onglet." },
-  "ctx.main": { "message": "Recherche Multi AI" },
-  "ctx.current": { "message": "Rechercher « %s » avec l'espace de travail actuel" },
-  "ctx.wsItem": { "message": "$1 : « %s »" },
-  "ad.noAdapter": { "message": "Aucun adaptateur" },
-  "ad.looksLoggedOut": { "message": "Peut-être non connecté ou sur une page de connexion" },
-  "ad.inputNotFound": { "message": "Champ de saisie introuvable (structure du site modifiée)" },
-  "ad.sentCleared": { "message": "Envoyé ($1, champ vidé)" },
-  "ad.notConfirmed": { "message": "Texte saisi mais envoi non confirmé (bouton peut-être désactivé ou site modifié)" }
+  "extension_name": {
+    "message": "Multi AI Recherche multiple"
+  },
+  "extension_description": {
+    "message": "Ouvrez plusieurs moteurs de recherche et plusieurs assistants IA sur une même page : saisissez une fois en bas, tous les panneaux recherchent et démarrent une conversation simultanément."
+  },
+  "actionTitle": {
+    "message": "Ouvrir Multi AI"
+  },
+  "app_subtitle": {
+    "message": "Recherche multiple · Chat multi-IA"
+  },
+  "app_addPanel": {
+    "message": "＋ Panneaux"
+  },
+  "app_addPanelTitle": {
+    "message": "Ajouter un panneau"
+  },
+  "app_settings": {
+    "message": "⚙ Réglages"
+  },
+  "app_settingsTitle": {
+    "message": "Réglages"
+  },
+  "app_previewBanner": {
+    "message": "Mode aperçu (extension non chargée) : les conversations IA ne se produisent pas vraiment. Pour toutes les fonctionnalités, activez le « Mode développeur » → « Charger l'extension non empaquetée » dans <b>chrome://extensions</b> et sélectionnez le dossier <b>multi-ai</b>."
+  },
+  "app_previewOk": {
+    "message": "Compris"
+  },
+  "app_queryPlaceholder": {
+    "message": "Saisissez ici, Entrée ou Envoyer — tous les panneaux recherchent / démarrent une conversation en même temps"
+  },
+  "app_send": {
+    "message": "Envoyer"
+  },
+  "app_closeTitle": {
+    "message": "Fermer"
+  },
+  "app_themeSection": {
+    "message": "Thème"
+  },
+  "app_themeDark": {
+    "message": "Sombre"
+  },
+  "app_themeLight": {
+    "message": "Clair"
+  },
+  "app_panelsSection": {
+    "message": "Panneaux (nombre personnalisable, partage équitable de la largeur)"
+  },
+  "app_addPanel2": {
+    "message": "＋ Ajouter un panneau"
+  },
+  "app_wsSection": {
+    "message": "Espaces de travail"
+  },
+  "app_saveWs": {
+    "message": "Enregistrer les panneaux actuels comme espace de travail"
+  },
+  "app_ceSection": {
+    "message": "Moteurs de recherche personnalisés"
+  },
+  "app_ceNamePlaceholder": {
+    "message": "Nom (ex. : Mon moteur)"
+  },
+  "app_ceUrlPlaceholder": {
+    "message": "Modèle d'URL contenant %s (ex. : https://x.com/search?q=%s)"
+  },
+  "app_addBtn": {
+    "message": "Ajouter"
+  },
+  "app_pickerTitle": {
+    "message": "Choisir un site"
+  },
+  "app_pickerSearchPlaceholder": {
+    "message": "Rechercher un site…"
+  },
+  "app_pickerTabAll": {
+    "message": "Tout"
+  },
+  "app_pickerTabAi": {
+    "message": "IA"
+  },
+  "app_pickerTabSearch": {
+    "message": "Recherche"
+  },
+  "app_pickerTabCustom": {
+    "message": "Personnalisé"
+  },
+  "app_customChip": {
+    "message": "Personnalisé"
+  },
+  "app_applyWsTitle": {
+    "message": "Appliquer l'espace de travail : $1"
+  },
+  "app_panelNameTitle": {
+    "message": "Cliquer pour changer de site"
+  },
+  "app_aiPanelType": {
+    "message": "Conversation IA"
+  },
+  "app_searchPanelType": {
+    "message": "Moteur de recherche"
+  },
+  "app_statusReady": {
+    "message": "Prêt"
+  },
+  "app_refreshTitle": {
+    "message": "Actualiser le panneau"
+  },
+  "app_refreshStatus": {
+    "message": "Actualisation…"
+  },
+  "app_openNewTabTitle": {
+    "message": "Ouvrir dans un nouvel onglet"
+  },
+  "app_removeTitle": {
+    "message": "Retirer le panneau"
+  },
+  "app_removeShort": {
+    "message": "Retirer"
+  },
+  "app_moveUp": {
+    "message": "Monter"
+  },
+  "app_moveDown": {
+    "message": "Descendre"
+  },
+  "app_applyWs": {
+    "message": "Appliquer"
+  },
+  "app_applyWsTitle2": {
+    "message": "Appliquer cet espace de travail"
+  },
+  "app_deleteTitle": {
+    "message": "Supprimer"
+  },
+  "app_customTag": {
+    "message": "Personnalisé"
+  },
+  "app_emptyPanels": {
+    "message": "Aucun panneau — cliquez sur « ＋ Panneaux » en haut à droite, ou choisissez un espace de travail en haut."
+  },
+  "app_statusPreview": {
+    "message": "Mode aperçu : chargez l'extension pour vraiment dialoguer"
+  },
+  "app_statusNotReady": {
+    "message": "Panneau non prêt, actualisez puis réessayez"
+  },
+  "app_statusSending": {
+    "message": "Envoi…"
+  },
+  "app_statusTimeout": {
+    "message": "Délai dépassé, pas de confirmation"
+  },
+  "app_statusSendFailed": {
+    "message": "Échec de l'envoi"
+  },
+  "app_statusSearching": {
+    "message": "Recherche…"
+  },
+  "app_statusSentWaiting": {
+    "message": "Envoyé, en attente de réponse…"
+  },
+  "app_statusLoggedOut": {
+    "message": "Non connecté ou connexion requise"
+  },
+  "app_statusNotFound": {
+    "message": "Champ de saisie introuvable (site modifié)"
+  },
+  "app_pickerNoMatch": {
+    "message": "Aucun site correspondant"
+  },
+  "app_pickerReplaceTitle": {
+    "message": "Remplacer « $1 » par…"
+  },
+  "app_pickerAddTitle": {
+    "message": "Choisir un site à ajouter"
+  },
+  "app_ceAlertPercent": {
+    "message": "Le modèle d'URL doit contenir le jeton %s"
+  },
+  "app_ceAlertScheme": {
+    "message": "L'URL doit commencer par http(s)://"
+  },
+  "app_ceAlertDuplicate": {
+    "message": "Un moteur portant ce nom existe déjà"
+  },
+  "app_wsAutoName": {
+    "message": "Espace de travail $1"
+  },
+  "app_searchTag": {
+    "message": "Recherche · $1"
+  },
+  "ws_aiFamily": {
+    "message": "Famille IA"
+  },
+  "ws_globalSearch": {
+    "message": "Recherche mondiale"
+  },
+  "ws_chineseSearch": {
+    "message": "Recherche chinoise"
+  },
+  "cat_general": {
+    "message": "Général"
+  },
+  "cat_chinese": {
+    "message": "Chinois"
+  },
+  "cat_academic": {
+    "message": "Académique"
+  },
+  "cat_community": {
+    "message": "Communauté"
+  },
+  "cat_dev": {
+    "message": "Développement"
+  },
+  "cat_video": {
+    "message": "Vidéo"
+  },
+  "cat_finance": {
+    "message": "Finance"
+  },
+  "cat_news": {
+    "message": "Actualités"
+  },
+  "cat_entertainment": {
+    "message": "Divertissement"
+  },
+  "cat_dictionary": {
+    "message": "Dictionnaire"
+  },
+  "cat_design": {
+    "message": "Design"
+  },
+  "cat_shopping": {
+    "message": "Shopping"
+  },
+  "popup_brand2": {
+    "message": "Recherche multiple"
+  },
+  "popup_desc": {
+    "message": "Ouvrez plusieurs moteurs de recherche et conversations IA sur une même page : saisissez une fois en bas et tous les panneaux recherchent / dialoguent en même temps."
+  },
+  "popup_open": {
+    "message": "Ouvrir la page Multi AI"
+  },
+  "popup_hint": {
+    "message": "Astuce : connectez-vous d'abord sur chaque site IA ; utilisez « ↗ » en haut à droite d'un panneau pour ouvrir le site dans un nouvel onglet."
+  },
+  "ctx_main": {
+    "message": "Recherche Multi AI"
+  },
+  "ctx_current": {
+    "message": "Rechercher « %s » avec l'espace de travail actuel"
+  },
+  "ctx_wsItem": {
+    "message": "$1 : « %s »"
+  },
+  "ad_noAdapter": {
+    "message": "Aucun adaptateur"
+  },
+  "ad_looksLoggedOut": {
+    "message": "Peut-être non connecté ou sur une page de connexion"
+  },
+  "ad_inputNotFound": {
+    "message": "Champ de saisie introuvable (structure du site modifiée)"
+  },
+  "ad_sentCleared": {
+    "message": "Envoyé ($1, champ vidé)"
+  },
+  "ad_notConfirmed": {
+    "message": "Texte saisi mais envoi non confirmé (bouton peut-être désactivé ou site modifié)"
+  }
 }
